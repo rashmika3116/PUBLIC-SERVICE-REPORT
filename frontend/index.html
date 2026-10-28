@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Public Issue Reporting System</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <header>
+        <div class="logo">CivicTrack</div>
+        <nav>
+            <a href="#home">Home</a>
+            <a href="#report">Report Issue</a>
+            <a href="#track">Track Issue</a>
+            <button id="admin-open" class="nav-btn">Admin Login</button>
+        </nav>
+    </header>
+
+    <section class="hero" id="home">
+        <div>
+            <p class="tagline">YOUR COMMUNITY, YOUR VOICE</p>
+            <h1>See a problem?<br><span>Let's get it fixed.</span></h1>
+            <p>
+                Report broken streetlights, damaged roads, and
+                campus maintenance problems. Track your report
+                until it is resolved.
+            </p>
+            <a href="#report" class="primary-btn">Report an Issue →</a>
+        </div>
+        <div class="hero-image">
+            <div class="circle">!</div>
+            <div class="city">🏙️</div>
+            <div class="road">COMMUNITY IMPROVEMENT</div>
+        </div>
+    </section>
+
+    <section class="steps">
+        <div><b>01</b><h3>Report</h3><p>Submit an issue</p></div>
+        <div><b>02</b><h3>Review</h3><p>Admin assigns a team</p></div>
+        <div><b>03</b><h3>Resolve</h3><p>Track the progress</p></div>
+    </section>
+
+    <main class="container">
+        <section class="card" id="report">
+            <h2>Report an Issue</h2>
+            <p class="muted">Provide details about the problem.</p>
+
+            <form id="report-form">
+                <label for="title">Issue Title</label>
+                <input id="title" name="title" required
+                       maxlength="100"
+                       placeholder="e.g. Streetlight not working">
+
+                <label for="category">Issue Category</label>
+                <select id="category" name="category" required>
+                    <option value="">Select category</option>
+                    <option>Road Damage</option>
+                    <option>Streetlight</option>
+                    <option>Water Supply</option>
+                    <option>Waste Management</option>
+                    <option>Campus Maintenance</option>
+                    <option>Drainage</option>
+                    <option>Other</option>
+                </select>
+
+                <label for="location">Location</label>
+                <input id="location" name="location" required
+                       maxlength="180"
+                       placeholder="Enter street, landmark or building">
+
+                <label for="description">Description</label>
+                <textarea id="description" name="description"
+                          rows="4" required minlength="10"
+                          maxlength="2000"
+                          placeholder="Describe the issue..."></textarea>
+
+                <label for="contact">Email (Optional)</label>
+                <input id="contact" name="contact" type="email"
+                       placeholder="your@email.com">
+
+                <button type="submit" class="primary-btn full">
+                    Submit Report
+                </button>
+            </form>
+
+            <div id="report-message" class="message"
+                 role="status" aria-live="polite"></div>
+        </section>
+
+        <section class="card" id="track">
+            <h2>Track Your Report</h2>
+            <p class="muted">
+                Enter your report ID and private tracking code.
+            </p>
+
+            <form id="track-form">
+                <label for="report-id">Report ID</label>
+                <input id="report-id" required
+                       placeholder="e.g. PIR-ABC123">
+
+                <label for="tracking-code">Tracking Code</label>
+                <input id="tracking-code" required
+                       placeholder="Enter tracking code">
+
+                <button type="submit" class="dark-btn full">
+                    Check Status
+                </button>
+            </form>
+
+            <div id="track-message" class="message"
+                 role="status" aria-live="polite"></div>
+            <div id="tracking-result" class="result" hidden></div>
+        </section>
+    </main>
+
+    <section class="notice">
+        <h3>Every report matters!</h3>
+        <p>Your report helps make our community safer and better.</p>
+    </section>
+
+    <footer>
+        <p>© 2026 CivicTrack | Public Issue Reporting System</p>
+    </footer>
+
+    <dialog id="admin-dialog">
+        <form method="dialog" class="dialog-heading">
+            <h2>Administrator Login</h2>
+            <button class="close-btn" aria-label="Close">×</button>
+        </form>
+
+        <form id="admin-login-form">
+            <label for="admin-password">Admin Password</label>
+            <input id="admin-password" type="password" required>
+            <button type="submit" class="primary-btn full">Login</button>
+            <div id="login-message" class="message"
+                 role="status"></div>
+        </form>
+    </dialog>
+
+    <section id="admin-dashboard" class="admin-panel" hidden>
+        <div class="admin-heading">
+            <div>
+                <h2>Administrator Dashboard</h2>
+                <p class="muted">Manage and resolve reported issues.</p>
+            </div>
+            <button id="admin-logout" class="dark-btn">Logout</button>
+        </div>
+
+        <div id="admin-stats" class="admin-stats"></div>
+
+        <div class="admin-tools">
+            <input id="admin-search"
+                   placeholder="Search issues...">
+            <select id="admin-filter">
+                <option value="">All Statuses</option>
+                <option>Submitted</option>
+                <option>In Progress</option>
+                <option>Resolved</option>
+                <option>Rejected</option>
+            </select>
+            <button id="refresh-reports" class="dark-btn">
+                Refresh
+            </button>
+        </div>
+
+        <div id="admin-reports"></div>
+        <div id="admin-message" class="message"
+             role="status"></div>
+    </section>
+
+    <script src="app.js"></script>
+</body>
+</html>
